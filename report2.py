@@ -1,9 +1,20 @@
 import openpyxl
+import tkinter as tk 
+from tkinter import filedialog 
+
+root = tk.Tk()
+root.withdraw()
+
+file_path = filedialog.askopenfilename() # show an "Open" dialog box and return the path to the selected file 
+
+print(file_path)
+
+input("Press Enter to continue...")
 
 Cell_name = input("Enter the cell name: ").lower()
 
 # open the workbook
-workbook = openpyxl.load_workbook('test.xlsm')
+workbook = openpyxl.load_workbook(file_path)
 
 # select the Pressures sheet
 worksheet = workbook['Pressures A']
