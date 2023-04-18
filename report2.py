@@ -1,15 +1,52 @@
 import openpyxl
 import tkinter as tk 
 from tkinter import filedialog 
+import os 
+
+#Selection of the file to be used for the report.
 
 root = tk.Tk()
 root.withdraw()
 
 file_path = filedialog.askopenfilename() # show an "Open" dialog box and return the path to the selected file 
-
-print(file_path)
+file_name = os.path.basename(file_path)
+print(file_name)
 
 input("Press Enter to continue...")
+
+
+# Function to select the sheet to be used for the report.
+
+def button_click(button_text):    
+    global selected_button    
+    selected_button = button_text
+    root.destroy() # Close the main window
+    
+# Create the main Tkinter window
+
+root = tk.Tk()
+root.title("Button Example")
+
+# Create buttons
+
+button_texts = ["Pressures A", "Pressures B", "Low Temperatures", "High Temperatures A", "High Temperatures B", "Engine Speed"]
+buttons = []
+
+for button_text in button_texts:    
+    button = tk.Button(root, text=button_text, command=lambda text=button_text: button_click(text))    
+    button.pack()    
+    buttons.append(button)
+
+selected_button = None 
+
+# Run the main loop
+root.mainloop()
+
+if selected_button is not None:
+    print("Selected button text:", selected_button)
+else:
+    print("No button selected")
+
 
 Cell_name = input("Enter the cell name: ").lower()
 
